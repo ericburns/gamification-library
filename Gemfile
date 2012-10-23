@@ -18,7 +18,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'sqlite3', :group => [:development, :test]
+#gem 'sqlite3', :group => [:development, :test]
 group :production do
   gem 'pg'
 end
