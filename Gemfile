@@ -21,6 +21,7 @@ end
 #gem 'sqlite3', :group => [:development, :test]
 group :production do
   gem 'pg'
+  gem 'thin'
 end
 
 gem 'jquery-rails'
