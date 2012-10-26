@@ -13,29 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20121024001116) do
 
-  create_table "badges", :force => true do |t|
-    t.string   "badge_name",                             :null => false
-    t.string   "badge_image", :default => "default.png", :null => false
-    t.text     "badge_info"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-  end
-
-  create_table "emails", :force => true do |t|
-    t.string   "user_id",    :null => false
-    t.string   "email",      :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "inventories", :force => true do |t|
-    t.string   "user_id",    :null => false
-    t.string   "badge_id",   :null => false
-    t.integer  "amount"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "levels", :force => true do |t|
     t.integer  "xp_to_next_level", :default => -1, :null => false
     t.datetime "created_at",                       :null => false
