@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
 	validates :username, :uniqueness => {:case_sensitive => false}
 
 	belongs_to :level
+	validates :level_id, :existence => true
 end

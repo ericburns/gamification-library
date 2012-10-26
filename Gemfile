@@ -31,7 +31,12 @@ end
 
 gem 'jquery-rails'
 gem 'heroku'
+
+# Twitter Bootstrap
 gem 'bootstrap-sass'
+
+# Used for validating the existence of belongs_to foreign keys.
+gem "validates_existence", ">= 0.4"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
