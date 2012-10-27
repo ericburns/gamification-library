@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121024001116) do
+ActiveRecord::Schema.define(:version => 20121026044714) do
+
+  create_table "friendships", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "friend_id",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "levels", :force => true do |t|
     t.integer  "xp_to_next_level", :default => -1, :null => false
@@ -26,5 +33,7 @@ ActiveRecord::Schema.define(:version => 20121024001116) do
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end
+
+  add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
 end

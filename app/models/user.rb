@@ -1,12 +1,15 @@
 class User < ActiveRecord::Base
-	# Each attribute is required.
-	validates :username, :presence => true
+	# -------------- Accessors/Mutators
+	attr_accessible :username, :level_id, :xp
 
-	# Username must be 3 > x > 40
-	# => and unique (ignoring case)
+	# -------------- Associations
+	belongs_to :level
+	has_many :friendships
+
+	# -------------- Validations
+	validates :username, :presence => true
 	validates :username, :length => {:in => 3..40}
 	validates :username, :uniqueness => {:case_sensitive => false}
-
-	belongs_to :level
 	validates :level_id, :existence => true
+	validates :xp, :numericality => {:greater_than_or_equal_to => 0}
 end
