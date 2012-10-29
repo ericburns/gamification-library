@@ -1,4 +1,10 @@
 LevelBadger::Application.routes.draw do
+  resources :emails
+
+  resources :inventories
+
+  resources :badges
+
   resources :levels
 
   resources :users

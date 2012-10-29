@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
 	# -------------- Associations
 	belongs_to :level
 	has_many :friendships
+	has_one :inventory
+	has_many :emails
 
 	# -------------- Validations
 	validates :username, :presence => true
