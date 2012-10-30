@@ -15,7 +15,6 @@ class Inventory < ActiveRecord::Base
 	validates :amount, :numericality => { :only_integer => true }
 	validates :amount, :numericality => {:greater_than => 0}
 	
-
 	# -------------- Custom Validations
 	
 
