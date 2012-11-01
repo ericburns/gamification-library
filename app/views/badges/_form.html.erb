@@ -1,4 +1,4 @@
-<%= form_for(@badge) do |f| %>
+<%= form_for(@badge, html: {class: 'form-horizontal'}) do |f| %>
   <% if @badge.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@badge.errors.count, "error") %> prohibited this badge from being saved:</h2>
@@ -12,6 +12,31 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit %>
+    <div class="control-group">
+      <%= f.label :badge_name, class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :badge_name %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :badge_image, class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :badge_image %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :badge_info, class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_area :badge_info %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit class: 'btn' %>
+      </div>
+    </div>
   </div>
 <% end %>

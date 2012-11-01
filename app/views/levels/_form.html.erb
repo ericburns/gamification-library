@@ -1,4 +1,4 @@
-<%= form_for(@level) do |f| %>
+<%= form_for(@level, html: {class: 'form-horizontal'}) do |f| %>
   <% if @level.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@level.errors.count, "error") %> prohibited this level from being saved:</h2>
@@ -12,6 +12,17 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit %>
+    <div class="control-group">
+      <%= f.label :xp_to_next_level, class: 'control-label' %>
+      <div class="controls">
+        <%= f.number_field :xp_to_next_level %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit class: 'btn' %>
+      </div>
+    </div>
   </div>
 <% end %>
