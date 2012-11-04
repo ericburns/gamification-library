@@ -1,7 +1,15 @@
 LevelBadger::Application.routes.draw do
+  resources :emails
+
+  resources :inventories
+
+  resources :badges
+
   resources :levels
 
   resources :users
+
+  resources :friendships
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

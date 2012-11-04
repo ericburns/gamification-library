@@ -1,10 +1,10 @@
-<%= form_for(@friendship, html: {class: 'form-horizontal'}) do |f| %>
-  <% if @friendship.errors.any? %>
+<%= form_for(@email, html: {class: 'form-horizontal'}) do |f| %>
+  <% if @email.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@friendship.errors.count, "error") %> prohibited this friendship from being saved:</h2>
+      <h2><%= pluralize(@email.errors.count, "error") %> prohibited this email from being saved:</h2>
 
       <ul>
-      <% @friendship.errors.full_messages.each do |msg| %>
+      <% @email.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -20,9 +20,9 @@
     </div>
 
     <div class="control-group">
-      <%= f.label :friend_id, class: 'control-label' %>
+      <%= f.label :email, class: 'control-label' %>
       <div class="controls">
-        <%= f.number_field :friend_id %>
+        <%= f.email_field :email %>
       </div>
     </div>
 
