@@ -5,8 +5,8 @@ class CreateUsers < ActiveRecord::Migration
     	t.string :username, :null => false
     	t.integer :level_id, :null => false
     	t.integer :xp, :null => false, :default => 0
-		t.string :encrypted_password
-		t.string :salt
+	  	t.string :encrypted_password
+	  	t.string :salt
     	t.timestamps
     end
 
