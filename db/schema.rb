@@ -50,11 +50,13 @@ ActiveRecord::Schema.define(:version => 20121028035318) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "username",                  :null => false
-    t.integer  "level_id",                  :null => false
-    t.integer  "xp",         :default => 0, :null => false
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.string   "username",                          :null => false
+    t.integer  "level_id",                          :null => false
+    t.integer  "xp",                 :default => 0, :null => false
+    t.string   "encrypted_password"
+    t.string   "salt"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
