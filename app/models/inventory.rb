@@ -15,16 +15,10 @@ class Inventory < ActiveRecord::Base
 	validates :amount, :numericality => { :only_integer => true }
 	validates :amount, :numericality => {:greater_than => 0}
 	validates_uniqueness_of :user_id, :scope => [:badge_id]
-	validate :user_has_badge_already
 	
 	# -------------- Custom Validations
 	
-	def user_has_badge_already
-		
-		Inventory.where("user_id = ? AND badge_id = ?", user_id, badge_id).first_or_create!("amount = ?", amount)
-		
 
-	end
 	
 
 end
