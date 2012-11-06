@@ -1,5 +1,56 @@
 <p id="notice"><%= notice %></p>
 
+<div class="page-header">
+  <h1><%= @user.username %></h1>
+</div>
+
+<h3>Email</h3>
+<ul>
+	<% @user.emails.each do |email| %>
+		<li><%= email.email %></li>
+	<% end %>
+</ul>
+
+<h3>Experience</h3>
+<table class="table table-striped">
+	<tr>
+		<th>Level</th>
+		<th>Cumulative XP</th>
+		<th>Levels Up At</th>
+	</tr>
+	<tr>
+		<td><%= @user.level_id %></td>
+		<td><%= @user.xp %></td>
+		<td><%= @user.level.xp_to_next_level %></td>
+	</tr>
+</table>
+
+<h3>Friends</h3>
+<ul>
+	<% @user.friendships.each do |friend| %>
+		<li><%= User.find(friend.friend_id).username %></li>
+	<% end %>
+</ul>
+
+<!-- COME BACK AND TEST THIS AFTER COOPER FIXES INVENTORY -->
+<h3>Inventory</h3>
+<table class="table table-striped">
+	<tr>
+		<th>Image</th>
+		<th>Name</th>
+		<th>Info</th>
+		<th>Amount</th>
+	</tr>
+	<% @user.inventory.each do |inv| %>
+		<% badge = Badge.find(inv.badge_id) %>
+		<tr>
+			<td><%= badge.badge_image %></td>
+			<td><%= badge.badge_name %></td>
+			<td><%= badge.badge_info %></td>
+			<td><%= inv.amount %></td>
+		</tr>
+	<% end %>
+</table>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

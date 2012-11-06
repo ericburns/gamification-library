@@ -1,19 +1,24 @@
-<h1>Listing badges</h1>
+<h1>Badges</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Badge Image</th>
+    <th>Badge Name</th>
+    <th>Badge Info</th>
+    <th>Manage</th>
   </tr>
 
-<% @badges.each do |badge| %>
-  <tr>
-    <td><%= link_to 'Show', badge %></td>
-    <td><%= link_to 'Edit', edit_badge_path(badge) %></td>
-    <td><%= link_to 'Destroy', badge, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+  <% @badges.each do |badge| %>
+    <tr>
+      <td><%= badge.badge_image %></td>
+      <td><%= badge.badge_name %></td>
+      <td><%= badge.badge_info %></td>
+      <td><%= link_to 'View', badge %> | 
+        <%= link_to 'Edit', edit_badge_path(badge) %> | 
+        <%= link_to 'Delete', badge, confirm: 'Are you sure?', method: :delete %>
+      </td>
+    </tr>
+  <% end %>
 </table>
 
 <br />

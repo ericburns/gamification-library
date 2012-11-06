@@ -1,17 +1,22 @@
-<h1>Listing inventories</h1>
+<h1>Inventories</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>User</th>
+    <th>Badge</th>
+    <th>Amount</th>
+    <th>Manage</th>
   </tr>
 
 <% @inventories.each do |inventory| %>
   <tr>
-    <td><%= link_to 'Show', inventory %></td>
-    <td><%= link_to 'Edit', edit_inventory_path(inventory) %></td>
-    <td><%= link_to 'Destroy', inventory, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= User.find(inventory.user_id).username %></td>
+    <td><%= Badge.find(inventory.badge_id).badge_name %></td>
+    <td><%= inventory.amount %></td>
+    <td>
+      <%= link_to 'Show', inventory %> | <%= link_to 'Edit', edit_inventory_path(inventory) %> | 
+      <%= link_to 'Destroy', inventory, confirm: 'Are you sure?', method: :delete %>
+    </td>
   </tr>
 <% end %>
 </table>
