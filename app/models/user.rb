@@ -39,6 +39,8 @@ class User < ActiveRecord::Base
   def self.authenticate(username_or_email = "", login_password = "")
     user = User.find_by_username(username_or_email)
 
+	#I think there's some unnecessary lines here, but we can clean this up later. - CW
+	
     if EMAIL_REGEX.match(username_or_email)
         user = User.find_by_email(username_or_email)
     else
@@ -50,6 +52,6 @@ class User < ActiveRecord::Base
   end
 
   def match_password(login_password = "")
-    encrypted_password == BCrypt::Engine.hash_secret(login_password, salt)
+    encrypted_password == Digest::SHA1.hexdigest("Adding #{salt} to {password}")
   end
 end

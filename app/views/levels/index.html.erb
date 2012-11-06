@@ -1,17 +1,21 @@
 <h1>Listing levels</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Level</th>
+    <th>Xp To Next Level</th>
+    <th>Manage</th>
   </tr>
 
 <% @levels.each do |level| %>
   <tr>
-    <td><%= link_to 'Show', level %></td>
-    <td><%= link_to 'Edit', edit_level_path(level) %></td>
-    <td><%= link_to 'Destroy', level, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= level.id %></td>
+    <td><%= level.xp_to_next_level %></td>
+    <td>
+      <%= link_to 'View', level %> | 
+      <%= link_to 'Edit', edit_level_path(level) %> | 
+      <%= link_to 'Delete', level, confirm: 'Are you sure?', method: :delete %>
+    </td>
   </tr>
 <% end %>
 </table>

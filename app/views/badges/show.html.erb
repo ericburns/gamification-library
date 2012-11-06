@@ -1,5 +1,17 @@
 <p id="notice"><%= notice %></p>
 
+<h1><%= @badge.badge_name %> badge</h1>
+
+<table class="table table-striped">
+	<tr>
+		<th>Image</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td><%= @badge.badge_image %></td>
+		<td><%= @badge.badge_info %></td>
+	</tr>
+</table>
 
 <%= link_to 'Edit', edit_badge_path(@badge) %> |
 <%= link_to 'Back', badges_path %>
