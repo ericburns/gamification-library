@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
 	# -------------- Accessors/Mutators
-	attr_accessible :username, :level_id, :xp, :password, :password_confirmation
+	attr_accessible :username, :level_id, :xp, :password, :password_confirmation, :email
 	attr_accessor :password
+  EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i
 
 	# -------------- Associations
 	belongs_to :level
@@ -35,4 +36,20 @@ class User < ActiveRecord::Base
 		self.password = nil
 	end
 	
+  def self.authenticate(username_or_email = "", login_password = "")
+    user = User.find_by_username(username_or_email)
+
+    if EMAIL_REGEX.match(username_or_email)
+        user = User.find_by_email(username_or_email)
+    else
+        user = User.find_by_username(username_or_email)
+    end
+
+      return user if user && user.match_password(login_password)
+      return false
+  end
+
+  def match_password(login_password = "")
+    encrypted_password == BCrypt::Engine.hash_secret(login_password, salt)
+  end
 end
