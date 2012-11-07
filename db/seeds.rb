@@ -14,13 +14,23 @@ CSV.foreach("db/level_seed.csv") do | row |
   puts "level with #{row[0]} created"
 end
 
+Game.destroy_all
+CSV.foreach("db/game_seed.csv") do | row |
+  Game.create!({ gamename: row[0], 
+                 description: row[1] })
+
+  puts "Game #{row[0]} created!"
+end
+
 User.destroy_all
 CSV.foreach("db/user_seed.csv") do | row |
   level = Level.find_by_xp_to_next_level(row[0])
+  game = Game.find_by_gamename(row[4])
   level.users.create!({ username: row[1],
                         level_id: level.id,
                         xp: row[2],
-                        password: row[3] })
+                        password: row[3], 
+                        game_id: game.id })
   puts "#{row[1]}, created!"
 end
 
