@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
 	#I think there's some unnecessary lines here, but we can clean this up later. - CW
 	
     if EMAIL_REGEX.match(username_or_email)
-        user = User.find_by_email(username_or_email)
+        user = Email.find_by_email(username_or_email).user
     else
         user = User.find_by_username(username_or_email)
     end
