@@ -19,7 +19,8 @@ CSV.foreach("db/user_seed.csv") do | row |
   level = Level.find_by_xp_to_next_level(row[0])
   level.users.create!({ username: row[1],
                         level_id: level.id,
-                        xp: row[2] })
+                        xp: row[2],
+                        password: row[3] })
   puts "#{row[1]}, created!"
 end
 
@@ -31,3 +32,29 @@ CSV.foreach("db/friendship_seed.csv") do | row |
                              friend_id: friend.id})
   puts "#{user.username} is now friends with #{friend.username}"
 end
+
+Badge.destroy_all
+CSV.foreach("db/badge_seed.csv") do | row |
+  Badge.create!({ badge_name: row[0],
+                  badge_image: row[1] })
+  puts "#{row[0]} created!"
+end
+
+Inventory.destroy_all
+CSV.foreach("db/inventory_seed.csv") do | row |
+  user = User.find_by_username(row[0])
+  badge = Badge.find_by_badge_name(row[1])
+  badge.inventories.create!({ user_id: user.id,
+                             amount: row[2] })
+  puts "inventory for #{user.username} created!"
+end
+
+Email.destroy_all
+CSV.foreach("db/email_seed.csv") do | row |
+  user = User.find_by_username(row[0])
+  user.emails.create!({ email: row[1] })
+
+  puts "email for #{user} created!"
+end
+
+
