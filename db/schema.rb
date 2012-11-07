@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121028035318) do
+ActiveRecord::Schema.define(:version => 20121106230904) do
 
   create_table "badges", :force => true do |t|
     t.string   "badge_name",                             :null => false
@@ -35,6 +35,13 @@ ActiveRecord::Schema.define(:version => 20121028035318) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "games", :force => true do |t|
+    t.string   "gamename",    :null => false
+    t.string   "description", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "inventories", :force => true do |t|
     t.string   "user_id",    :null => false
     t.string   "badge_id",   :null => false
@@ -51,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20121028035318) do
 
   create_table "users", :force => true do |t|
     t.string   "username",                          :null => false
+    t.string   "game_id",                           :null => false
     t.integer  "level_id",                          :null => false
     t.integer  "xp",                 :default => 0, :null => false
     t.string   "encrypted_password"
