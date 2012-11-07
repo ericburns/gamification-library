@@ -1,17 +1,11 @@
 LevelBadger::Application.routes.draw do
-  resources :games
-
-  resources :emails
-
-  resources :inventories
-
-  resources :badges
-
-  resources :levels
-
-  resources :users
-
-  resources :friendships
+  resources :games, 
+            :emails,
+            :inventories,
+            :badges,
+            :levels,
+            :users,
+            :friendships
 
   root :to => "session#login"
   match "signup", :to => "users#new"

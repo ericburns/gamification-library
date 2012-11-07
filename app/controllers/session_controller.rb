@@ -26,7 +26,6 @@ class SessionController < ApplicationController
     end
   end
 
-  
   # Home throws an exception whenever I add a new user from the form.
   def home
     respond_to do | format | 
@@ -35,13 +34,13 @@ class SessionController < ApplicationController
   end
 
   def profile
-      respond_to do | format |
+    respond_to do | format |
       format.html
     end
   end
 
   def setting
-      respond_to do | format |
+    respond_to do | format |
       format.html
     end
   end
