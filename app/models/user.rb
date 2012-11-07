@@ -1,11 +1,12 @@
 class User < ActiveRecord::Base
 	# -------------- Accessors/Mutators
-	attr_accessible :username, :level_id, :xp, :password, :password_confirmation, :email
+	attr_accessible :username, :game_id, :level_id, :xp, :password, :password_confirmation, :email
 	attr_accessor :password
   EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i
 
 	# -------------- Associations
 	belongs_to :level
+	belongs_to :game
 	has_many :friendships
 	has_many :inventory
 	has_many :emails
@@ -18,6 +19,7 @@ class User < ActiveRecord::Base
 	validates :username, :presence => true
 	validates :username, :length => {:in => 3..40}
 	validates :username, :uniqueness => {:case_sensitive => false}
+	validates :game_id, :existence => true
 	validates :level_id, :existence => true
 	validates :xp, :numericality => {:greater_than_or_equal_to => 0}
 	validates :password, :confirmation => true #Password confirmation done here
