@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 	# -------------- Accessors/Mutators
-	attr_accessible :username, :game_id, :level_id, :xp, :password, :password_confirmation, :email, :password, :salt
+	attr_accessible :username, :game_id, :level_id, :xp, :password_confirmation, :email, :salt, :password
+  attr_accessor :password
   EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i
 
 	# -------------- Associations
@@ -29,7 +30,7 @@ class User < ActiveRecord::Base
 	def encrypt_password
 		if password.present?
 			self.salt= Digest::SHA1.hexdigest("# We add {email} as unique value and #{Time.now} as random value")
-			self.encrypted_password= Digest::SHA1.hexdigest("Adding #{salt} to {password}")
+			self.encrypted_password= Digest::SHA1.hexdigest("Adding #{salt} to #{password}")
 		end
 	end
 
