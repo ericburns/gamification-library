@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
 	# -------------- Accessors/Mutators
-	attr_accessible :username, :game_id, :level_id, :xp, :password, :password_confirmation, :email
-	attr_accessor :password
+	attr_accessible :username, :game_id, :level_id, :xp, :password, :password_confirmation, :email, :password, :salt
   EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i
 
 	# -------------- Associations
@@ -54,6 +53,6 @@ class User < ActiveRecord::Base
   end
 
   def match_password(login_password = "")
-    encrypted_password == Digest::SHA1.hexdigest("Adding #{salt} to {password}")
+    self.encrypted_password == Digest::SHA1.hexdigest("Adding #{salt} to #{login_password}")
   end
 end
