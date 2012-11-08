@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   #
-  before_filter :save_login_state, :only => [:new, :create]
+  # before_filter :save_login_state, :only => [:new, :create]
   def index
     @users = User.all
 
