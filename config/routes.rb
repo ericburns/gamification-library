@@ -1,4 +1,6 @@
 LevelBadger::Application.routes.draw do
+  resources :admins
+
   resources :games, 
             :emails,
             :inventories,
