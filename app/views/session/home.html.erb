@@ -1,2 +1,5 @@
-<h1>Session#home</h1>
-<p>Find me in app/views/session/home.html.erb</p>
+<h4>Welcome, <%=@current_user.username%>!</h4>
+<p>This is the page you see after you log in.</p>
+<%= form_tag(:action => 'logout') do %>
+			<%= submit_tag("Log Out") %>
+<% end %>
