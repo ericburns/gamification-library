@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 	
 	# -------------- Callbacks
 	before_save :encrypt_password
+	before_save :adjust_level
 	after_save :clear_password
 
 	# -------------- Validations
@@ -55,5 +56,14 @@ class User < ActiveRecord::Base
 
   def match_password(login_password = "")
     self.encrypted_password == Digest::SHA1.hexdigest("Adding #{salt} to #{login_password}")
+  end
+
+  def adjust_level
+  	self.level_id = 1
+  	Level.all.each do |level|
+  		if xp >= level.xp_to_next_level
+  			self.level_id = level.id + 1 unless !Level.exists?(level.id + 1)
+  		end
+  	end
   end
 end
