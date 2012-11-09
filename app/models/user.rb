@@ -21,7 +21,6 @@ class User < ActiveRecord::Base
 	validates :username, :length => {:in => 3..40}
 	validates :username, :uniqueness => {:case_sensitive => false}
 	validates :game_id, :existence => true
-	validates :level_id, :existence => true
 	validates :xp, :numericality => {:greater_than_or_equal_to => 0}
 	validates :password, :confirmation => true #Password confirmation done here
 	validates_length_of :password, :in => 6..20, :on => :create
