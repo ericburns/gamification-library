@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
 	belongs_to :level
 	belongs_to :game
 	has_many :friendships
-	has_many :inventory
-	has_many :emails
+	has_many :inventory, :dependent => :destroy
+	has_many :emails, :dependent => :destroy
 	
 	# -------------- Callbacks
 	before_save :encrypt_password
