@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protected
   def authenticate_user
     unless session[:user_id]
-      redirect_to(:controller => 'sessions', :action => 'login')
+      redirect_to(:controller => 'session', :action => 'login')
       return false
     else
       # set current user object  to @current_user object variable

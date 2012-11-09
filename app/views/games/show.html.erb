@@ -1,5 +1,52 @@
 <p id="notice"><%= notice %></p>
 
+<h1><%= @game.gamename %><small><%= @game.description %></small></h1>
+
+<h3>Players</h3>
+<table class="table table-striped">
+  <tr>
+    <th>Username</th>
+    <th>Level</th>
+    <th>XP</th>
+    <th>Progress Toward Next Level</th>
+  </tr>
+  <tr>
+    <td><i class="icon-user"></i> You</td>
+    <td><%= @current_user.level_id %></td>
+    <td><%= @current_user.xp %></td>
+    <td>
+    	<% percent = ((@current_user.xp + 0.0) / (@current_user.level.xp_to_next_level + 0.0)) * 100 %>
+    	<% if percent > 100 %>
+    	<% percent = 100 %>
+    	<% end %>
+    	<%= @current_user.xp.to_s + " / " + @current_user.level.xp_to_next_level.to_s %>
+		<div class="progress progress-success">
+			<div class="bar" <%= 'style="width: '.html_safe + percent.to_s + '%;"'.html_safe %></div>
+		</div>
+    </td>
+  </tr>
+<% @game.users.each do |user| %>
+	<% if user.id != @current_user.id %>
+	  <tr>
+	    <td><i class="icon-user"></i> <%= user.username %></td>
+	    <td><%= user.level_id %></td>
+	    <td><%= user.xp %></td>
+	    <td>
+	    	<% percent = ((user.xp + 0.0) / (user.level.xp_to_next_level + 0.0)) * 100 %>
+	    	<% if percent > 100 %>
+	    	<% percent = 100 %>
+	    	<% end %>
+	    	<%= user.xp.to_s + " / " + user.level.xp_to_next_level.to_s %>
+			<div class="progress progress-success">
+				<div class="bar" <%= 'style="width: '.html_safe + percent.to_s + '%;"'.html_safe %></div>
+			</div>
+	    </td>
+	  </tr>
+  	<% end %>
+<% end %>
+</table>
+
+<p><button class="btn btn-large btn-primary" type="button"> +1 </button></p>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

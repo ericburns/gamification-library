@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  before_filter :authenticate_user, :only => [:show]
+
   # GET /games
   # GET /games.json
   def index
