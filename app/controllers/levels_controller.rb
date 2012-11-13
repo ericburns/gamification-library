@@ -25,6 +25,7 @@ class LevelsController < ApplicationController
   # GET /levels/new.json
   def new
     @level = Level.new
+    @games = Game.all # Alex Park: this data is needed for the dropdown for level creation
 
     respond_to do |format|
       format.html # new.html.erb
