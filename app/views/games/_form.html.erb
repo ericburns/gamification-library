@@ -11,6 +11,21 @@
     </div>
   <% end %>
 
+
+ <div class="control-group">
+      <%= f.label :Name, class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :gamename %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :Description, class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :description %>
+      </div>
+    </div>
+    
   <div class="actions">
     <%= f.submit %>
   </div>
