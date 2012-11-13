@@ -17,7 +17,8 @@ end
 Game.destroy_all
 CSV.foreach("db/game_seed.csv") do | row |
   Game.create!({ gamename: row[0], 
-                 description: row[1] })
+                 description: row[1],
+                 unit: row[2] })
 
   puts "Game #{row[0]} created!"
 end
@@ -46,7 +47,9 @@ end
 Badge.destroy_all
 CSV.foreach("db/badge_seed.csv") do | row |
   Badge.create!({ badge_name: row[0],
-                  badge_image: row[1] })
+                  badge_image: row[1],
+                  badge_info: row[2],
+                  awarded_at: row[3] })
   puts "#{row[0]} created!"
 end
 

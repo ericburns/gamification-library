@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20121109053329) do
   create_table "badges", :force => true do |t|
     t.string   "badge_name",                             :null => false
     t.string   "badge_image", :default => "default.png", :null => false
+    t.integer  "awarded_at",  :default => 1,             :null => false
     t.text     "badge_info"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
@@ -41,10 +42,11 @@ ActiveRecord::Schema.define(:version => 20121109053329) do
   end
 
   create_table "games", :force => true do |t|
-    t.string   "gamename",    :null => false
-    t.string   "description", :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "gamename",                      :null => false
+    t.text     "description",                   :null => false
+    t.string   "unit",        :default => "XP", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "inventories", :force => true do |t|
