@@ -1,7 +1,7 @@
 class Game < ActiveRecord::Base
 
 	# -------------- Accessors/Mutators
-	attr_accessible :gamename, :description
+	attr_accessible :gamename, :description, :unit
    
 	# -------------- Associations
 	has_many :users
@@ -10,6 +10,7 @@ class Game < ActiveRecord::Base
 	validates :gamename, :presence => true
 	validates :gamename, :uniqueness => {:case_sensitive => false}
 	validates :description, :presence => true
+	validates :unit, :presence => true
 	
 	# -------------- Custom Validations
 	
