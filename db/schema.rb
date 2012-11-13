@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20121109053329) do
 
   create_table "games", :force => true do |t|
     t.string   "gamename",                      :null => false
-    t.string   "description",                   :null => false
+    t.text     "description",                   :null => false
     t.string   "unit",        :default => "XP", :null => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
