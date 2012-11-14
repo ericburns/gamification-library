@@ -2,6 +2,11 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Create Levels ', new_level_path %>
+<!-- 
+	Had to remove this link because you can't pass on the
+	value to the right game until it has been created, and
+	we don't know which one that is.
+
+	link_to 'Create Levels ', new_level_path -->
 
 <p><%= link_to 'Back', admins_path %></p>

@@ -1,14 +1,15 @@
 class Level < ActiveRecord::Base
 	# -------------- Accessors/Mutators
-	attr_accessible :xp_to_next_level
+	attr_accessible :xp_to_next_level, :game_id
 
 	# -------------- Associations
-	has_many :users
+	belongs_to :game
 
 	# -------------- Validations
 	validates :xp_to_next_level, :presence => true
 	validates :xp_to_next_level, :numericality => {:greater_than => 0}
 	validate :xp_higher_than_previous_level_xp
+	validates :game_id, :existence => true
 
 	# -------------- Custom Validation Methods
 	def xp_higher_than_previous_level_xp

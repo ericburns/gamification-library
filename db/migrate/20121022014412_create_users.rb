@@ -3,8 +3,7 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
     	# A User's ID will be created automatically as "id" by Rails.
     	t.string :username, :null => false
-		t.string :game_id, :null => false
-    	t.integer :level_id, :null => false, :default => 1
+      t.string :game_id, :null => false
     	t.integer :xp, :null => false, :default => 0
 	  	t.string :encrypted_password
 	  	t.string :salt

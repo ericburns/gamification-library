@@ -7,11 +7,11 @@
 		<th>Amount</th>
 	</tr>
 	<tr>
-		<td><%= User.find(@inventory.user_id).username %></td>
-		<td><%= Badge.find(@inventory.badge_id).badge_name %></td>
+		<td><%= @user.username %></td>
+		<td><%= @game.badges.find(@inventory.badge_id).badge_name %></td>
 		<td><%= @inventory.amount %></td>
 	</tr>
 </table>
 
-<%= link_to 'Edit', edit_inventory_path(@inventory) %> |
-<%= link_to 'Back', inventories_path %>
+<%= link_to 'Edit', edit_game_user_inventory_path(@game, @user, @inventory) %> |
+<%= link_to 'Back', game_user_inventories_path %>

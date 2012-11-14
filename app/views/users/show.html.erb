@@ -19,7 +19,7 @@
 		<th>Levels Up At</th>
 	</tr>
 	<tr>
-		<td><%= @user.level_id %></td>
+		<td><%= @user.level.id %></td>
 		<td><%= @user.xp %></td>
 		<td><%= @user.level.xp_to_next_level %></td>
 	</tr>
@@ -52,5 +52,5 @@
 	<% end %>
 </table>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Edit', edit_game_user_path(@game, @user) %> |
+<%= link_to 'Back', game_users_path(@game) %>

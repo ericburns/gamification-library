@@ -5,6 +5,8 @@ class Game < ActiveRecord::Base
    
 	# -------------- Associations
 	has_many :users
+	has_many :levels
+	has_many :badges
 					  
 	# -------------- Validations  
 	validates :gamename, :presence => true
@@ -14,6 +16,4 @@ class Game < ActiveRecord::Base
 	
 	# -------------- Custom Validations
 	
-
-
 end

@@ -1,5 +1,7 @@
 <h1>Friendships</h1>
 
+<p><i class="icon-plus-sign"></i> <%= link_to 'New Friendship', new_game_user_friendship_path(@game, @user) %></p>
+
 <table class="table table-striped">
   <tr>
     <th>User</th>
@@ -12,14 +14,10 @@
     <td><%= User.find(friendship.user_id).username %></td>
     <td><%= User.find(friendship.friend_id).username %></td>
     <td>
-      <%= link_to 'Show', friendship %> | 
-      <%= link_to 'Edit', edit_friendship_path(friendship) %> | 
-      <%= link_to 'Destroy', friendship, confirm: 'Are you sure?', method: :delete %>
+      <%= link_to 'Show', [@game, @user, friendship] %> | 
+      <%= link_to 'Edit', edit_game_user_friendship_path(@game, @user, friendship) %> | 
+      <%= link_to 'Destroy', [@game, @user, friendship], confirm: 'Are you sure?', method: :delete %>
     </td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Friendship', new_friendship_path %>

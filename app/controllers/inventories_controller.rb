@@ -1,8 +1,14 @@
 class InventoriesController < ApplicationController
+
+  layout "application_with_admin_panel"
+
+  before_filter :get_game
+  before_filter :get_user
+
   # GET /inventories
   # GET /inventories.json
   def index
-    @inventories = Inventory.all
+    @inventories = @user.inventory
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +19,7 @@ class InventoriesController < ApplicationController
   # GET /inventories/1
   # GET /inventories/1.json
   def show
-    @inventory = Inventory.find(params[:id])
+    @inventory = @user.inventory.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -40,12 +46,12 @@ class InventoriesController < ApplicationController
   # POST /inventories
   # POST /inventories.json
   def create
-    @inventory = Inventory.new(params[:inventory])
+    @inventory = @user.inventory.new(params[:inventory])
 
     respond_to do |format|
       if @inventory.save
-        format.html { redirect_to @inventory, notice: 'Inventory was successfully created.' }
-        format.json { render json: @inventory, status: :created, location: @inventory }
+        format.html { redirect_to [@game, @user, @inventory], notice: 'Inventory was successfully created.' }
+        format.json { render json: [@game, @user, @inventory], status: :created, location: [@game, @user, @inventory] }
       else
         format.html { render action: "new" }
         format.json { render json: @inventory.errors, status: :unprocessable_entity }
@@ -56,11 +62,11 @@ class InventoriesController < ApplicationController
   # PUT /inventories/1
   # PUT /inventories/1.json
   def update
-    @inventory = Inventory.find(params[:id])
+    @inventory = @user.inventory.find(params[:id])
 
     respond_to do |format|
       if @inventory.update_attributes(params[:inventory])
-        format.html { redirect_to @inventory, notice: 'Inventory was successfully updated.' }
+        format.html { redirect_to [@game, @user, @inventory], notice: 'Inventory was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -72,12 +78,22 @@ class InventoriesController < ApplicationController
   # DELETE /inventories/1
   # DELETE /inventories/1.json
   def destroy
-    @inventory = Inventory.find(params[:id])
+    @inventory = @user.inventory.find(params[:id])
     @inventory.destroy
 
     respond_to do |format|
-      format.html { redirect_to inventories_url }
+      format.html { redirect_to game_user_inventories_url }
       format.json { head :no_content }
     end
   end
+
+  # Used for getting the game each user is associated with.
+  def get_game
+    @game = Game.find(params[:game_id])
+  end
+
+  def get_user
+    @user = get_game.users.find(params[:user_id])
+  end
+
 end

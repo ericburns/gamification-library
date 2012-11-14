@@ -12,7 +12,7 @@
   </tr>
   <tr>
     <td><i class="icon-user"></i> You</td>
-    <td><%= @current_user.level_id %></td>
+    <td><%= @current_user.level.id %></td>
     <td><%= @current_user.xp %></td>
     <td>
     	<% percent = ((@current_user.xp + 0.0) / (@current_user.level.xp_to_next_level + 0.0)) * 100 %>
@@ -29,7 +29,7 @@
 	<% if user.id != @current_user.id %>
 	  <tr>
 	    <td><i class="icon-user"></i> <%= user.username %></td>
-	    <td><%= user.level_id %></td>
+	    <td><%= user.level.id %></td>
 	    <td><%= user.xp %></td>
 	    <td>
 	    	<% percent = ((user.xp + 0.0) / (user.level.xp_to_next_level + 0.0)) * 100 %>

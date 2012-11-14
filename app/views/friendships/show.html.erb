@@ -2,5 +2,5 @@
 
 <p><%= User.find(@friendship.user_id).username %> and <%= User.find(@friendship.friend_id).username %> are friends.</p>
 
-<%= link_to 'Edit', edit_friendship_path(@friendship) %> |
-<%= link_to 'Back', friendships_path %>
+<%= link_to 'Edit', edit_game_user_friendship_path(@game, @user, @friendship) %> |
+<%= link_to 'Back', game_user_friendships_path %>

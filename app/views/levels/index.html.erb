@@ -1,5 +1,7 @@
 <h1>Listing levels</h1>
 
+<p><i class="icon-plus-sign"></i> <%= link_to 'New Level', new_game_level_path(@game) %></p>
+
 <table class="table table-striped">
   <tr>
     <th>Level</th>
@@ -12,14 +14,12 @@
     <td><%= level.id %></td>
     <td><%= level.xp_to_next_level %></td>
     <td>
-      <%= link_to 'View', level %> | 
-      <%= link_to 'Edit', edit_level_path(level) %> | 
-      <%= link_to 'Delete', level, confirm: 'Are you sure?', method: :delete %>
+      <%= link_to 'View', game_level_path(@game, level) %> | 
+      <%= link_to 'Edit', edit_game_level_path(@game, level) %> | 
+      <%= link_to 'Delete', [@game, level], confirm: 'Are you sure?', method: :delete %>
     </td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Level', new_level_path %>

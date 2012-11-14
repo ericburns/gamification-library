@@ -1,8 +1,14 @@
 class EmailsController < ApplicationController
+
+  layout "application_with_admin_panel"
+
+  before_filter :get_game
+  before_filter :get_user
+
   # GET /emails
   # GET /emails.json
   def index
-    @emails = Email.all
+    @emails = @user.emails
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +19,7 @@ class EmailsController < ApplicationController
   # GET /emails/1
   # GET /emails/1.json
   def show
-    @email = Email.find(params[:id])
+    @email = @user.emails.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -40,12 +46,12 @@ class EmailsController < ApplicationController
   # POST /emails
   # POST /emails.json
   def create
-    @email = Email.new(params[:email])
+    @email = @user.emails.new(params[:email])
 
     respond_to do |format|
       if @email.save
-        format.html { redirect_to @email, notice: 'Email was successfully created.' }
-        format.json { render json: @email, status: :created, location: @email }
+        format.html { redirect_to [@game, @user, @email], notice: 'Email was successfully created.' }
+        format.json { render json: [@game, @user, @email], status: :created, location: [@game, @user, @email] }
       else
         format.html { render action: "new" }
         format.json { render json: @email.errors, status: :unprocessable_entity }
@@ -56,11 +62,11 @@ class EmailsController < ApplicationController
   # PUT /emails/1
   # PUT /emails/1.json
   def update
-    @email = Email.find(params[:id])
+    @email = @user.emails.find(params[:id])
 
     respond_to do |format|
       if @email.update_attributes(params[:email])
-        format.html { redirect_to @email, notice: 'Email was successfully updated.' }
+        format.html { redirect_to [@game, @user, @email], notice: 'Email was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,8 +82,17 @@ class EmailsController < ApplicationController
     @email.destroy
 
     respond_to do |format|
-      format.html { redirect_to emails_url }
+      format.html { redirect_to game_user_emails_url }
       format.json { head :no_content }
     end
+  end
+
+  # Used for getting the game each user is associated with.
+  def get_game
+    @game = Game.find(params[:game_id])
+  end
+
+  def get_user
+    @user = get_game.users.find(params[:user_id])
   end
 end

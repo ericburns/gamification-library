@@ -1,5 +1,7 @@
 <h1>Emails</h1>
 
+<p><i class="icon-plus-sign"></i> <%= link_to 'New Email', new_game_user_email_path(@game, @user) %></p>
+
 <table class="table table-striped">
   <tr>
     <th>User</th>
@@ -9,15 +11,15 @@
 
 <% @emails.each do |email| %>
   <tr>
-    <td><%= User.find(email.user_id).username %></td>
+    <td><%= @user.username %></td>
     <td><%= email.email %></td>
     <td>
-      <%= link_to 'Show', email %> | 
-      <%= link_to 'Edit', edit_email_path(email) %> | 
-      <%= link_to 'Destroy', email, confirm: 'Are you sure?', method: :delete %>
+      <%= link_to 'Show', [@game, @user, email] %> | 
+      <%= link_to 'Edit', edit_game_user_email_path(@game, @user, email) %> | 
+      <%= link_to 'Destroy', [@game, @user, email], confirm: 'Are you sure?', method: :delete %>
     </td>
   </tr>
 <% end %>
 </table>
 
-<%= link_to 'New Email', new_email_path %>
+<%= link_to 'New Email', new_game_user_email_path(@game, @user) %>

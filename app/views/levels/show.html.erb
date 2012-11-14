@@ -2,5 +2,5 @@
 
 <p>Level <%= @level.id %> has <%= @level.xp_to_next_level %> xp to the next level.</p>
 
-<%= link_to 'Edit', edit_level_path(@level) %> |
-<%= link_to 'Back', levels_path %>
+<%= link_to 'Edit', edit_game_level_path(@game, @level) %> |
+<%= link_to 'Back', game_levels_path(@game) %>

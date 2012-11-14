@@ -1,5 +1,7 @@
 <h1>Badges</h1>
 
+<p><i class="icon-plus-sign"></i> <%= link_to 'New Badge', new_game_badge_path(@game) %></p>
+
 <table class="table table-striped">
   <tr>
     <th>Badge Image</th>
@@ -13,14 +15,10 @@
       <td><%= badge.badge_image %></td>
       <td><%= badge.badge_name %></td>
       <td><%= badge.badge_info %></td>
-      <td><%= link_to 'View', badge %> | 
-        <%= link_to 'Edit', edit_badge_path(badge) %> | 
-        <%= link_to 'Delete', badge, confirm: 'Are you sure?', method: :delete %>
+      <td><%= link_to 'View', [@game, badge] %> | 
+        <%= link_to 'Edit', edit_game_badge_path(@game, badge) %> | 
+        <%= link_to 'Delete', [@game, badge], confirm: 'Are you sure?', method: :delete %>
       </td>
     </tr>
   <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Badge', new_badge_path %>

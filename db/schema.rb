@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20121109053329) do
   end
 
   create_table "badges", :force => true do |t|
+    t.string   "game_id",                                :null => false
     t.string   "badge_name",                             :null => false
     t.string   "badge_image", :default => "default.png", :null => false
     t.integer  "awarded_at",  :default => 1,             :null => false
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20121109053329) do
   end
 
   create_table "levels", :force => true do |t|
+    t.string   "game_id",                          :null => false
     t.integer  "xp_to_next_level", :default => -1, :null => false
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
@@ -66,7 +68,6 @@ ActiveRecord::Schema.define(:version => 20121109053329) do
   create_table "users", :force => true do |t|
     t.string   "username",                          :null => false
     t.string   "game_id",                           :null => false
-    t.integer  "level_id",           :default => 1, :null => false
     t.integer  "xp",                 :default => 0, :null => false
     t.string   "encrypted_password"
     t.string   "salt"

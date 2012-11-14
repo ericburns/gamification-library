@@ -1,8 +1,13 @@
 class LevelsController < ApplicationController
+
+  layout "application_with_admin_panel"
+
+  before_filter :get_game
+
   # GET /levels
   # GET /levels.json
   def index
-    @levels = Level.all
+    @levels = @game.levels
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +18,7 @@ class LevelsController < ApplicationController
   # GET /levels/1
   # GET /levels/1.json
   def show
-    @level = Level.find(params[:id])
+    @level = @game.levels.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -41,12 +46,12 @@ class LevelsController < ApplicationController
   # POST /levels
   # POST /levels.json
   def create
-    @level = Level.new(params[:level])
+    @level = @game.levels.new(params[:level])
 
     respond_to do |format|
       if @level.save
-        format.html { redirect_to @level, notice: 'Level was successfully created.' }
-        format.json { render json: @level, status: :created, location: @level }
+        format.html { redirect_to [@game, @level], notice: 'Level was successfully created.' }
+        format.json { render json: [@game, @level], status: :created, location: [@game, @level] }
       else
         format.html { render action: "new" }
         format.json { render json: @level.errors, status: :unprocessable_entity }
@@ -57,11 +62,11 @@ class LevelsController < ApplicationController
   # PUT /levels/1
   # PUT /levels/1.json
   def update
-    @level = Level.find(params[:id])
+    @level = @game.levels.find(params[:id])
 
     respond_to do |format|
       if @level.update_attributes(params[:level])
-        format.html { redirect_to @level, notice: 'Level was successfully updated.' }
+        format.html { redirect_to [@game, @level], notice: 'Level was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -73,12 +78,17 @@ class LevelsController < ApplicationController
   # DELETE /levels/1
   # DELETE /levels/1.json
   def destroy
-    @level = Level.find(params[:id])
+    @level = @game.levels.find(params[:id])
     @level.destroy
 
     respond_to do |format|
-      format.html { redirect_to levels_url }
+      format.html { redirect_to game_levels_url }
       format.json { head :no_content }
     end
+  end
+
+  # Used for getting the game each user is associated with.
+  def get_game
+    @game = Game.find(params[:game_id])
   end
 end

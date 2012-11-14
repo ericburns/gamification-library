@@ -3,5 +3,5 @@
 <h1><%= User.find(@email.user_id).username %></h1>
 <p><%= @email.email %></p>
 
-<%= link_to 'Edit', edit_email_path(@email) %> |
-<%= link_to 'Back', emails_path %>
+<%= link_to 'Edit', edit_game_user_email_path(@game, @user, @email) %> |
+<%= link_to 'Back', game_user_emails_path %>

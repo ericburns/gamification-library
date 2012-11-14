@@ -1,8 +1,14 @@
 class FriendshipsController < ApplicationController
+
+  layout "application_with_admin_panel"
+
+  before_filter :get_game
+  before_filter :get_user
+
   # GET /friendships
   # GET /friendships.json
   def index
-    @friendships = Friendship.all
+    @friendships = @user.friendships
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +19,7 @@ class FriendshipsController < ApplicationController
   # GET /friendships/1
   # GET /friendships/1.json
   def show
-    @friendship = Friendship.find(params[:id])
+    @friendship = @user.friendships.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -40,12 +46,12 @@ class FriendshipsController < ApplicationController
   # POST /friendships
   # POST /friendships.json
   def create
-    @friendship = Friendship.new(params[:friendship])
+    @friendship = @user.friendships.new(params[:friendship])
 
     respond_to do |format|
       if @friendship.save
-        format.html { redirect_to @friendship, notice: 'Friendship was successfully created.' }
-        format.json { render json: @friendship, status: :created, location: @friendship }
+        format.html { redirect_to [@game, @user, @friendship], notice: 'Friendship was successfully created.' }
+        format.json { render json: [@game, @user, @friendship], status: :created, location: [@game, @user, @friendship] }
       else
         format.html { render action: "new" }
         format.json { render json: @friendship.errors, status: :unprocessable_entity }
@@ -56,11 +62,11 @@ class FriendshipsController < ApplicationController
   # PUT /friendships/1
   # PUT /friendships/1.json
   def update
-    @friendship = Friendship.find(params[:id])
+    @friendship = @user.friendships.find(params[:id])
 
     respond_to do |format|
       if @friendship.update_attributes(params[:friendship])
-        format.html { redirect_to @friendship, notice: 'Friendship was successfully updated.' }
+        format.html { redirect_to [@game, @user, @friendship], notice: 'Friendship was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -72,12 +78,21 @@ class FriendshipsController < ApplicationController
   # DELETE /friendships/1
   # DELETE /friendships/1.json
   def destroy
-    @friendship = Friendship.find(params[:id])
+    @friendship = @user.friendships.find(params[:id])
     @friendship.destroy
 
     respond_to do |format|
-      format.html { redirect_to friendships_url }
+      format.html { redirect_to game_user_friendships_url }
       format.json { head :no_content }
     end
+  end
+
+  # Used for getting the game each user is associated with.
+  def get_game
+    @game = Game.find(params[:game_id])
+  end
+
+  def get_user
+    @user = get_game.users.find(params[:user_id])
   end
 end

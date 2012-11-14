@@ -1,11 +1,10 @@
 class User < ActiveRecord::Base
 	# -------------- Accessors/Mutators
-	attr_accessible :username, :game_id, :level_id, :xp, :password_confirmation, :email, :salt, :password
+	attr_accessible :username, :game_id, :xp, :password_confirmation, :email, :salt, :password
   attr_accessor :password
   EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i
 
 	# -------------- Associations
-	belongs_to :level
 	belongs_to :game
 	has_many :friendships
 	has_many :inventory, :dependent => :destroy
@@ -13,7 +12,6 @@ class User < ActiveRecord::Base
 	
 	# -------------- Callbacks
 	before_save :encrypt_password
-	before_save :adjust_level
 	after_save :clear_password
 
 	# -------------- Validations
@@ -57,12 +55,22 @@ class User < ActiveRecord::Base
     self.encrypted_password == Digest::SHA1.hexdigest("Adding #{salt} to #{login_password}")
   end
 
-  def adjust_level
-  	self.level_id = 1
-  	Level.all.each do |level|
-  		if xp >= level.xp_to_next_level
-  			self.level_id = level.id + 1 unless !Level.exists?(level.id + 1)
+  def level
+  	levels = User.find(self.id).game.levels
+
+  	if (levels.count == 0)
+  		return Level.create(xp_to_next_level: 0)
+  	end
+
+	user_level = 1
+  	levels.each do |level|
+  		if (xp >= level.xp_to_next_level && user_level < levels.count)
+  			user_level += 1
   		end
   	end
+
+  	return levels.find(user_level)
+
   end
+  	
 end
