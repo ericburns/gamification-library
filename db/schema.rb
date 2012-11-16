@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20121109053329) do
   create_table "levels", :force => true do |t|
     t.string   "game_id",                          :null => false
     t.integer  "xp_to_next_level", :default => -1, :null => false
+    t.integer  "levelno",          :default => 1,  :null => false
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
   end

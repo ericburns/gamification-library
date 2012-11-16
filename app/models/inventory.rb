@@ -18,7 +18,7 @@ class Inventory < ActiveRecord::Base
 	
 	# -------------- Custom Validations
 	
-
+	
 	
 
 end

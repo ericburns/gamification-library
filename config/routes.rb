@@ -20,6 +20,8 @@ LevelBadger::Application.routes.draw do
   match "settings", :to => "session#setting"
   match "login_attempt", :to =>"session#login_attempt"
 
+
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

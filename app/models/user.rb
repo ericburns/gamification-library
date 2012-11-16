@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 	
 	# -------------- Callbacks
 	before_save :encrypt_password
-	after_save :clear_password
+	after_save :clear_password, :give_badge
 
 	# -------------- Validations
 	validates :username, :presence => true
@@ -55,11 +55,31 @@ class User < ActiveRecord::Base
     self.encrypted_password == Digest::SHA1.hexdigest("Adding #{salt} to #{login_password}")
   end
 
+  def give_badge
+		User.all.each do |user|		
+			userr = User.find(user.id)
+			atlevel = userr.level.id 
+			
+			Badge.all.each do |badge|
+				badger = Badge.find(badge.id)
+
+					if (badger.game_id == userr.game_id)
+						if (atlevel == badger.awarded_at)
+
+						Inventory.where(:user_id => userr.id, :badge_id => badger.id).first_or_create(amount: 1)
+						
+						end
+					end			
+			end
+		end  
+  end
+  
   def level
   	levels = User.find(self.id).game.levels
-
+	levels.order("levelno ASC")
+	
   	if (levels.count == 0)
-  		return Level.create(xp_to_next_level: 0)
+  		return Level.create(xp_to_next_level: 0) #I think this is broken - Cooper.
   	end
 
 	user_level = 1
@@ -69,7 +89,8 @@ class User < ActiveRecord::Base
   		end
   	end
 
-  	return levels.find(user_level)
+	return levels.where(levelno == user_level)
+  	#return levels.find(user_level)
 
   end
   	
