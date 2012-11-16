@@ -76,21 +76,27 @@ class User < ActiveRecord::Base
   
   def level
   	levels = User.find(self.id).game.levels
-	levels.order("levelno ASC")
+	levels.order('levelno ASC')
 	
   	if (levels.count == 0)
   		return Level.create(xp_to_next_level: 0) #I think this is broken - Cooper.
   	end
 
-	user_level = 1
+	user_level = 0
+	levid = levels.find(:first).id
   	levels.each do |level|
   		if (xp >= level.xp_to_next_level && user_level < levels.count)
   			user_level += 1
+			levid = level.id
   		end
   	end
+	
+	#print "                    ??? "
+	#print levels.where(levelno = user_level).levelno
 
-	return levels.where(levelno == user_level)
+	#return levels.where(levelno = user_level)
   	#return levels.find(user_level)
+	return levels.find(levid)
 
   end
   	
