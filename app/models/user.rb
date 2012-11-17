@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
   def give_badge
 		User.all.each do |user|		
 			userr = User.find(user.id)
-			atlevel = userr.level.id 
+			atlevel = userr.level.levelno 
 			
 			Badge.all.each do |badge|
 				badger = Badge.find(badge.id)
