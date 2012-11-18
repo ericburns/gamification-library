@@ -41,7 +41,7 @@
           <li class="divider"></li>
           <li class="nav-header"><%= link_to 'Levels', game_levels_path(@game) %></li>
           <% @game.levels.each do |level| %>
-            <li><%= link_to level.id.to_s, game_level_path(@game, level) %></li>
+            <li><%= link_to level.levelno.to_s, game_level_path(@game, level) %></li>
           <% end %>
 
           <li class="divider"></li>
