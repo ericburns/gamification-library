@@ -8,14 +8,14 @@
   <tr>
     <th>Username</th>
     <th>Level</th>
-    <th>XP</th>
+    <th><%= @game.unit %></th>
     <th>Manage</th>
   </tr>
 
 <% @users.each do |user| %>
   <tr>
     <td><i class="icon-user"></i> <%= user.username %></td>
-    <td><%= user.level.id %></td>
+    <td><%= user.level.levelno %></td>
     <td><%= user.xp %></td>
     <td>
         <%= link_to 'View', game_user_path(@game, user) %> |

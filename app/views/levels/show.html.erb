@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>Level <%= @level.levelno %> requires <%= @level.xp_to_next_level %> XP in order to reach the next level.</p>
+<p>Level <%= @level.levelno %> requires <%= @level.xp_to_next_level %> <%= @game.unit %> in order to reach the next level.</p>
 
 <%= link_to 'Edit', edit_game_level_path(@game, @level) %> |
 <%= link_to 'Back', game_levels_path(@game) %>
