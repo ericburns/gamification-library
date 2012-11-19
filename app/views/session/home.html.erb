@@ -1,5 +1,15 @@
-<h4>Welcome, <%=@current_user.username%>!</h4>
-<p>This is the page you see after you log in.</p>
+<h2>Welcome, <%=@current_user.username%>!</h2>
+<div class="container">
+  <div class="row">
+  <div class="span4">
+        <h3>Create New Game</h3>
+        <%= link_to 'New Game', new_game_path %> 
+    </div>
+    </div>
+</div>
+  
+<br>
 <%= form_tag(:action => 'logout') do %>
 			<%= submit_tag("Log Out") %>
 <% end %>
+</br>

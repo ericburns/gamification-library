@@ -45,7 +45,6 @@
   	<% end %>
 <% end %>
 </table>
-
 <%= form_for([@game, @current_user], :remote=>true, html: {class: 'form-horizontal'}) do |f| %>
       <div class="controls">
       	<% xp_update = @current_user.xp + 1 %>
