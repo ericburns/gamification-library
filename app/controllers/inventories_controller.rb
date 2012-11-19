@@ -8,7 +8,7 @@ class InventoriesController < ApplicationController
   # GET /inventories
   # GET /inventories.json
   def index
-    @inventories = @user.inventory
+    @inventories = @user.inventories
 
     respond_to do |format|
       format.html # index.html.erb
@@ -19,7 +19,7 @@ class InventoriesController < ApplicationController
   # GET /inventories/1
   # GET /inventories/1.json
   def show
-    @inventory = @user.inventory.find(params[:id])
+    @inventory = @user.inventories.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -46,7 +46,7 @@ class InventoriesController < ApplicationController
   # POST /inventories
   # POST /inventories.json
   def create
-    @inventory = @user.inventory.new(params[:inventory])
+    @inventory = @user.inventories.new(params[:inventory])
 
     respond_to do |format|
       if @inventory.save
@@ -62,7 +62,7 @@ class InventoriesController < ApplicationController
   # PUT /inventories/1
   # PUT /inventories/1.json
   def update
-    @inventory = @user.inventory.find(params[:id])
+    @inventory = @user.inventories.find(params[:id])
 
     respond_to do |format|
       if @inventory.update_attributes(params[:inventory])
@@ -78,7 +78,7 @@ class InventoriesController < ApplicationController
   # DELETE /inventories/1
   # DELETE /inventories/1.json
   def destroy
-    @inventory = @user.inventory.find(params[:id])
+    @inventory = @user.inventories.find(params[:id])
     @inventory.destroy
 
     respond_to do |format|

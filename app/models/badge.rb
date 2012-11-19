@@ -4,7 +4,7 @@ class Badge < ActiveRecord::Base
 	
 	# -------------- Associations
 	belongs_to :game
-	has_many :inventories
+	has_many :inventories, :dependent => :destroy
 
 	# -------------- Validations  
 	validates :badge_name,  :presence => true

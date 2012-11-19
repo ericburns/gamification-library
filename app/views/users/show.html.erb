@@ -41,7 +41,7 @@
 		<th>Info</th>
 		<th>Amount</th>
 	</tr>
-	<% @user.inventory.each do |inv| %>
+	<% @user.inventories.each do |inv| %>
 		<% badge = Badge.find(inv.badge_id) %>
 		<tr>
 			<td><img src="/assets/images/badges/<%= badge.badge_image %>" width="80px" height="80px"></td>

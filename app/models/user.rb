@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
 
 	# -------------- Associations
 	belongs_to :game
-	has_many :friendships
-	has_many :inventory, :dependent => :destroy
+	has_many :friendships, :dependent => :destroy
+	has_many :inventories, :dependent => :destroy
 	has_many :emails, :dependent => :destroy
 	
 	# -------------- Callbacks
@@ -63,8 +63,8 @@ class User < ActiveRecord::Base
 			Badge.all.each do |badge|
 				badger = Badge.find(badge.id)
 
-					if (badger.game_id == userr.game_id)
-						if (atlevel == badger.awarded_at)
+					if (badger.game_id == userr.game_id && userr.level.levelno >= badger.awarded_at)
+						if (badger.awarded_at > 0)
 
 						Inventory.where(:user_id => userr.id, :badge_id => badger.id).first_or_create(amount: 1)
 						
