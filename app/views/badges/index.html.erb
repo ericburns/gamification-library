@@ -6,14 +6,16 @@
   <tr>
     <th>Badge Image</th>
     <th>Badge Name</th>
+    <th>Level Required</th>
     <th>Badge Info</th>
     <th>Manage</th>
   </tr>
 
   <% @badges.each do |badge| %>
     <tr>
-      <td><%= badge.badge_image %></td>
+      <td><img src="/assets/images/badges/<%= badge.badge_image %>" width="80px" height="80px"></td>
       <td><%= badge.badge_name %></td>
+	  <td><%= badge.awarded_at %></td>
       <td><%= badge.badge_info %></td>
       <td><%= link_to 'View', [@game, badge] %> | 
         <%= link_to 'Edit', edit_game_badge_path(@game, badge) %> | 

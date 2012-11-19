@@ -5,10 +5,12 @@
 <table class="table table-striped">
 	<tr>
 		<th>Image</th>
+		<th>Level Required</th>
 		<th>Description</th>
 	</tr>
 	<tr>
-		<td> <img src="/assets/images/badges/<%= @badge.badge_image %>" width="20%" height="20%"> </td>
+		<td> <img src="/assets/images/badges/<%= @badge.badge_image %>" width="100px" height="100px"> </td>
+		<td><%= @badge.awarded_at %></td>
 		<td><%= @badge.badge_info %></td>
 	</tr>
 </table>

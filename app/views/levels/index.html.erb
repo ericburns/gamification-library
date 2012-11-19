@@ -5,13 +5,13 @@
 <table class="table table-striped">
   <tr>
     <th>Level</th>
-    <th>Xp To Next Level</th>
+    <th><%= @game.unit %> To Next Level</th>
     <th>Manage</th>
   </tr>
 
 <% @levels.each do |level| %>
   <tr>
-    <td><%= level.id %></td>
+    <td><%= level.levelno %></td>
     <td><%= level.xp_to_next_level %></td>
     <td>
       <%= link_to 'View', game_level_path(@game, level) %> | 
