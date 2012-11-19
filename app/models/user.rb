@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 	
 	# -------------- Callbacks
 	before_save :encrypt_password
-	after_save :clear_password, :give_badge
+	after_save :clear_password, :give_badge, :level
 
 	# -------------- Validations
 	validates :username, :presence => true
@@ -86,7 +86,7 @@ class User < ActiveRecord::Base
 	strike = 0
 	levid = levels.find(:first).id
   	levels.each do |level|
-		if (strike < 1 && user_level < levels.count)
+		if (strike < 1 && user_level < levels.count + 1)
 			if (xp >= level.xp_to_next_level)
 				user_level += 1
 				levid = level.id
