@@ -11,6 +11,7 @@ class Friendship < ActiveRecord::Base
 	validates :friend_id, :existence => true
 	validate :user_cannot_friend_self
 	validate :friendship_does_not_exist
+	validate :friends_in_same_game
 	
 	# -------------- Custom Validation Methods
 	def user_cannot_friend_self
@@ -24,4 +25,16 @@ class Friendship < ActiveRecord::Base
 			errors.add(:friend_id, "is aleady a friend.")
 		end
 	end
+	
+	def friends_in_same_game
+
+		user1 = User.find(user_id)
+		user2 = User.find(friend_id)		
+		
+		if (user1.game_id != user2.game_id)
+			errors.add(:friend_id, "is in a different game.")
+		end
+		
+	end
+	
 end
