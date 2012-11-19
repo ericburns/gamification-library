@@ -51,7 +51,7 @@
         <%= f.hidden_field :xp, :value => xp_update %>
       </div>
         <div class="form-actions">
-           <button type="submit" f.submit onClick="window.location.reload()" class="btn btn-primary"> +1 XP</button>
+           <button type="submit" f.submit onClick="window.location.reload()" class="btn btn-primary"> +1 <%= @game.unit %></button>
         </div>
 <% end %>
 
