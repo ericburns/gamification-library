@@ -4,12 +4,6 @@
   <h1><%= @user.username %></h1>
 </div>
 
-<h3>Email</h3>
-<ul>
-	<% @user.emails.each do |email| %>
-		<li><%= email.email %></li>
-	<% end %>
-</ul>
 
 <h3>Experience</h3>
 <table class="table table-striped">
