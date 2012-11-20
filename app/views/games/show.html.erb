@@ -11,7 +11,7 @@
     <th>Progress Toward Next Level</th>
   </tr>
   <tr>
-    <td><i class="icon-user"></i> You</td>
+    <td><i class="icon-user"></i> <%= link_to 'You', game_user_path(@game, @current_user) %></td>
     <td><%= @current_user.level.levelno %></td>
     <td><%= @current_user.xp %></td>
     <td>
@@ -28,7 +28,7 @@
 <% @game.users.each do |user| %>
 	<% if user.id != @current_user.id %>
 	  <tr>
-	    <td><i class="icon-user"></i> <%= user.username %></td>
+	    <td><i class="icon-user"></i> <%= link_to user.username, game_user_path(@game, user) %></td>
 	    <td><%= user.level.id %></td>
 	    <td><%= user.xp %></td>
 	    <td>
