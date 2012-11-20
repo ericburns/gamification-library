@@ -47,7 +47,7 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
+        format.html { redirect_to game_levels_path(@game), notice: 'Game was successfully created.' }
         format.json { render json: @game, status: :created, location: @game }
       else
         format.html { render action: "new" }
