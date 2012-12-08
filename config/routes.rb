@@ -11,6 +11,8 @@ LevelBadger::Application.routes.draw do
     end
   end
 
+  match "password", :to =>"password#password"
+
   root :to => "session#login"
   match "signup", :to => "users#new"
   match "login", :to => "session#login"
@@ -19,6 +21,7 @@ LevelBadger::Application.routes.draw do
   match "profile", :to => "session#profile"
   match "settings", :to => "session#setting"
   match "login_attempt", :to =>"session#login_attempt"
+  
   
 
   
