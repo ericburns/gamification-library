@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration
     	t.string :username, :null => false
       t.string :game_id, :null => false
     	t.integer :xp, :null => false, :default => 0
+      t.string :email
 	  	t.string :encrypted_password
 	  	t.string :salt
     	t.timestamps

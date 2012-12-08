@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20121109053329) do
     t.string   "username",                          :null => false
     t.string   "game_id",                           :null => false
     t.integer  "xp",                 :default => 0, :null => false
+    t.string   "email"
     t.string   "encrypted_password"
     t.string   "salt"
     t.datetime "created_at",                        :null => false
