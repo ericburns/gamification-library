@@ -11,7 +11,7 @@ LevelBadger::Application.routes.draw do
     end
   end
 
-  match "password", :to =>"password#password"
+  match "password", :to =>"passwords#password"
 
   root :to => "session#login"
   match "signup", :to => "users#new"

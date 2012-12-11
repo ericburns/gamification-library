@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LevelBadger</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Level Badger</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li><%= link_to 'Games', games_path %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span12">
+      <!-- VIEWS CONTENT -->
+
+       <div class="control-group">
+        <p>Username<br><input id="Username", name="Username" type="text" class: 'control-label'/></p>
+        <p>Email<br><input id="Email", name="Email" type="text" class: 'control-label' /><p>
+        <input name="commit" type="submit" value="Submit" />
+       </div>
+      <%= yield %>
+    </div>
+  </div>
+
+  <hr />
+</body>
+<div id="footer">
+<div class="container">
+<p class="muted credit">
+Find out more about
+<a href="http://levelbadger.6te.net/">Level Badger</a>
+</p>
+</div>
+</div>
+</html>
+
+
+
