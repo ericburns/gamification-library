@@ -1,4 +1,22 @@
-<h1>Game Administration Page</h1>
+<h1> Welcome to the Game Administration Page, <%=@current_user.username%>!</h1>
 
- 
-<%= link_to 'Create New Game', new_game_path %>
+<p><i class="icon-plus-sign"></i> <%= link_to 'New Game', new_game_path %></p>
+
+<h3>All Games:</h3>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @games.each do |game| %>
+  <tr>
+    <td><%= game.gamename %></td>
+    <td><%= link_to 'Show', game %></td>
+    <td><%= link_to 'Edit', edit_game_path(game) %></td>
+    <td><%= link_to 'Destroy', game, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>

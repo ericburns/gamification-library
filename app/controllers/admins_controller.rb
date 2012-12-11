@@ -1,8 +1,10 @@
 class AdminsController < ApplicationController
   # GET /admins
   # GET /admins.json
+before_filter :authenticate_admin
   def index
     @admins = Admin.all
+    @games = Game.all
 
     respond_to do |format|
       format.html # index.html.erb

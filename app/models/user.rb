@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
         user = User.find_by_username(username_or_email)
     end
 
-      return user if user && user.match_password(login_password)
+      return user if user && user.match_password(login_password) && (@game ? user.game_id = :game_id : true)
       return false
   end
 

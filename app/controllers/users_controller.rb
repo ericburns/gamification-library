@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   #
   # before_filter :save_login_state, :only => [:new, :create]
 
-  before_filter :get_game
+  before_filter :get_game, :only => [:show, :edit, :update, :destroy, :index]
 
   def index
     @users = @game.users

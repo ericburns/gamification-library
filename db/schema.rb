@@ -11,11 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121109053329) do
+ActiveRecord::Schema.define(:version => 20121210010350) do
 
   create_table "admins", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "username"
+    t.string   "email"
+    t.string   "encrypted_password"
+    t.string   "string"
+    t.string   "salt"
   end
 
   create_table "badges", :force => true do |t|
@@ -70,7 +75,6 @@ ActiveRecord::Schema.define(:version => 20121109053329) do
     t.string   "username",                          :null => false
     t.string   "game_id",                           :null => false
     t.integer  "xp",                 :default => 0, :null => false
-    t.string   "email"
     t.string   "encrypted_password"
     t.string   "salt"
     t.datetime "created_at",                        :null => false

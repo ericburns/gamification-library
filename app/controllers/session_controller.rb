@@ -3,11 +3,19 @@ class SessionController < ApplicationController
   before_filter :save_login_state, :only => [:login, :login_attempt]
 
 	def login_attempt
-		authorized_user = User.authenticate(params[:username_or_email],params[:login_password])
+
+    authorized_user = User.authenticate(params[:username_or_email],params[:login_password])
+    authorized_admin = Admin.authenticate(params[:username_or_email],params[:login_password])
+
 		if authorized_user
         session[:user_id] = authorized_user.id
 				flash[:notice] = "Wow Welcome again, you logged in as #{authorized_user.username}"
 				redirect_to(:action => 'home')
+    
+    elsif authorized_admin
+      session[:admin_id] = authorized_admin.id
+      redirect_to(:action => 'index', :controller=>'admins')
+     
 		else
 				flash[:notice] = "Invalid Username or Password"
 				flash[:color]= "invalid"
@@ -17,6 +25,7 @@ class SessionController < ApplicationController
 
   def logout
     session[:user_id] = nil
+    session[:admin_id] = nil
     redirect_to :action => 'login'
   end
 

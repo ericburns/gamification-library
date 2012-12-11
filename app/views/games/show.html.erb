@@ -10,6 +10,7 @@
     <th><%= @game.unit %></th>
     <th>Progress Toward Next Level</th>
   </tr>
+  <% if @current_user.is_a?(Admin) == false %>
   <tr>
     <td><i class="icon-user"></i> <%= link_to 'You', game_user_path(@game, @current_user) %></td>
     <td><%= @current_user.level.levelno %></td>
@@ -25,8 +26,9 @@
 		</div>
     </td>
   </tr>
+  <% end %>
 <% @game.users.each do |user| %>
-	<% if user.id != @current_user.id %>
+	<% if user.id != @current_user.id or @current_user.is_a?(Admin) %>
 	  <tr>
 	    <td><i class="icon-user"></i> <%= link_to user.username, game_user_path(@game, user) %></td>
 	    <td><%= user.level.id %></td>
@@ -45,6 +47,7 @@
   	<% end %>
 <% end %>
 </table>
+<% if @current_user.is_a?(Admin) == false %>
 <%= form_for([@game, @current_user], :remote=>true, html: {class: 'form-horizontal'}) do |f| %>
       <div class="controls">
       	<% xp_update = @current_user.xp + 1 %>
@@ -53,6 +56,7 @@
         <div class="form-actions">
            <button type="submit" f.submit onClick="window.location.reload()" class="btn btn-primary"> +1 <%= @game.unit %></button>
         </div>
+<% end %>
 <% end %>
 
 <%= link_to 'Edit', edit_game_path(@game) %> 

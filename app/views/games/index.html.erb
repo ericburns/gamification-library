@@ -10,11 +10,13 @@
   </tr>
 
 <% @games.each do |game| %>
+<% if @current_user.is_a?(Admin) game.id == @current_user.game_id %>
   <tr>
     <td><%= game.gamename %></td>
     <td><%= link_to 'Show', game %></td>
     <td><%= link_to 'Edit', edit_game_path(game) %></td>
     <td><%= link_to 'Destroy', game, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
+<% end %>
 <% end %>
 </table>
