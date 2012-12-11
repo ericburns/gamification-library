@@ -3,7 +3,7 @@ class SessionController < ApplicationController
   before_filter :save_login_state, :only => [:login, :login_attempt]
 
 	def login_attempt
-
+    # This functioality now takes admin users into account
     authorized_user = User.authenticate(params[:username_or_email],params[:login_password])
     authorized_admin = Admin.authenticate(params[:username_or_email],params[:login_password])
 

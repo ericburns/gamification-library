@@ -10,7 +10,8 @@
   </tr>
 
 <% @games.each do |game| %>
-<% if @current_user.is_a?(Admin) game.id == @current_user.game_id %>
+<!-- This limits a user to only seeing games they belong to. Admins still see all games -->
+<% if @current_user.is_a?(Admin) or String(game.id) == @current_user.game_id %>
   <tr>
     <td><%= game.gamename %></td>
     <td><%= link_to 'Show', game %></td>
